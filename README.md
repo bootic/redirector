@@ -31,7 +31,7 @@ git clone git@github.com:bootic/redirector.git
 cd redirector
 bundle install
 
-REDIRECTOR_API_TOKEN=foobar shotgun -p 9292
+REDIRECTOR_API_TOKEN=foobar bundle exec shotgun -p 9292
 ```
 
 Tests in `spec/`
