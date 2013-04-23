@@ -1,6 +1,10 @@
 require 'multi_json'
 class Api < Sinatra::Base
   
+  use Rack::Auth::Basic, "Protected Area" do |username, password|
+    username == 'x' && password == ENV['REDIRECTOR_API_TOKEN']
+  end
+    
   before do
     content_type 'application/json'
   end
