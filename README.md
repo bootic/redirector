@@ -20,7 +20,9 @@ Now requests to foo.bar.com will be redirected to bar.foo.com
 
 ## Deleting
 
+```
 curl -i -X DELETE -d '{"from":"foo.bar.com"}' -u user:pwd http://redirecting.server.com/api/redirects
+```
 
 ## Dev
 
