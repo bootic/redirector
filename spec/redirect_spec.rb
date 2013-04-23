@@ -25,6 +25,27 @@ describe Redirect do
     end
   end
   
+  describe '#del' do
+    before do
+      Redirect.set('www.foo.bar', 'www.bar.foo')
+    end
+    
+    it 'deletes from redis' do
+      Redirect.del('www.foo.bar')
+      Redirect.get('www.foo.bar').should be_nil
+    end
+    
+    it 'deletes with scheme' do
+      Redirect.del('http://www.foo.bar')
+      Redirect.get('www.foo.bar').should be_nil
+    end
+    
+    it 'deletes with path' do
+      Redirect.del('www.foo.bar/lala/lolo')
+      Redirect.get('www.foo.bar').should be_nil
+    end
+  end
+  
   describe '#get' do
     before do
       Redirect.set('www.foo.bar', 'www.bar.foo')

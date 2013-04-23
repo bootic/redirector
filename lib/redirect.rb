@@ -33,6 +33,11 @@ class Redirect
     end
   end
   
+  def self.del(host)
+    uri_host = build_uri(host)
+    redis.del prefixed(uri_host.host)
+  end
+  
   def initialize(canonical)
     @canonical = URI.parse(canonical)
   end
