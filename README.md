@@ -1,6 +1,6 @@
 # Generic URL redirector
 
-Point your DNS to this app, and register redirects
+Point your DNS to this app, and register redirects.
 
 ## Setup
 
@@ -21,3 +21,19 @@ Now requests to foo.bar.com will be redirected to bar.foo.com
 ## Deleting
 
 curl -i -X DELETE -d '{"from":"foo.bar.com"}' -u user:pwd http://redirecting.server.com/api/redirects
+
+## Dev
+
+```
+git clone git@github.com:bootic/redirector.git
+cd redirector
+bundle install
+
+REDIRECTOR_API_TOKEN=foobar shotgun -p 9292
+```
+
+Tests in `spec/`
+
+```
+bundle exec rspec spec/*_spec.rb
+```
