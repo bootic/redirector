@@ -45,4 +45,15 @@ describe Redirect do
       end
     end
   end
+  
+  describe '#all' do
+    before do
+      Redirect.set('www.foo.bar', 'www.bar.foo')
+      Redirect.set('http://lalala.com', 'http://foobar.cl')
+    end
+    
+    it 'lists all' do
+      Redirect.all.should == {'www.foo.bar' => 'http://www.bar.foo', 'lalala.com' => 'http://foobar.cl'}
+    end
+  end
 end

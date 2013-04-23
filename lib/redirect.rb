@@ -1,8 +1,10 @@
+require "redis"
+require 'uri'
 class Redirect
   
   class InvalidURL < StandardError; end
   
-  PREFIX = 'btc:rd'.freeze
+  PREFIX = 'btc:rd:'.freeze
   
   def self.connect!(opts = {})
     @redis = Redis.new(opts)
@@ -22,6 +24,13 @@ class Redirect
     uri_host = build_uri(host)
     uri = build_uri(canonical)
     redis.set(prefixed(uri_host.host), "#{uri.scheme}://#{uri.host}")
+  end
+  
+  def self.all
+    redis.keys("#{PREFIX}*").inject({}) do |mem, key|
+      mem[key.sub(PREFIX, '')] = redis.get(key)
+      mem
+    end
   end
   
   def initialize(canonical)
@@ -47,7 +56,7 @@ class Redirect
   attr_reader :canonical
   
   def self.prefixed(string)
-    [PREFIX, string].join(':')
+    [PREFIX, string].join
   end
   
   def self.build_uri(url)
