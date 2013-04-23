@@ -7,4 +7,5 @@ gem 'multi_json'
 
 group :development do
   gem 'rspec'
+  gem 'shotgun'
 end

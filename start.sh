@@ -1,0 +1,1 @@
+REDIRECTOR_API_TOKEN=foobar bundle exec shotgun -p 9292
