@@ -4,7 +4,7 @@ Point your DNS to this app, and register redirects.
 
 ## Setup
 
-You need Redis running and REDIRECTOR_API_TOKEN set in the environment
+You need Redis running and 'REDIRECTOR_API_TOKEN' set in the environment
 
 ## Registering
 
